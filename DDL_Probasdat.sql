@@ -86,7 +86,8 @@ CREATE TABLE Transaksi (
 CREATE TABLE Ekspedisi (
 	kdEkspedisi VARCHAR(255) NOT NULL,
 	namaEkspedisi VARCHAR(255),
-	telepon VARCHAR(255)
+	telepon VARCHAR(255),
+	PRIMARY KEY(kdEkspedisi)
 );
 
 CREATE TABLE Pembayaran (
@@ -111,4 +112,16 @@ CREATE TABLE Pembeli (
 
 -- MENAMBAHKAN FOREIGN KEY
 ALTER TABLE Produk
-ADD FOREIGN KEY (kdProdukDeskripsi) REFERENCES ProdukDeskripsi(kdProdui)
+ADD FOREIGN KEY (kdProdukDeskripsi) REFERENCES ProdukDeskripsi(kdProdukDeskripsi),
+ADD FOREIGN KEY (kdSupplier) REFERENCES Supplier(kdSupplier),
+ADD FOREIGN KEY (kdKategori) REFERENCES Kategori(kdKategori);
+
+ALTER TABLE TransaksiDetail
+ADD FOREIGN KEY (kdProduk) REFERENCES Produk(kdProduk),
+ADD FOREIGN KEY (kdTransaksi) REFERENCES Transaksi(kdTransaksi);
+
+ALTER TABLE Transaksi
+ADD FOREIGN KEY (kdPegawai) REFERENCES Pegawai(kdPegawai),
+ADD FOREIGN KEY (kdEkspedisi) REFERENCES Ekspedisi(kdEkspedisi),
+ADD FOREIGN KEY (kdBayar) REFERENCES Pembayaran(kdBayar),
+ADD FOREIGN KEY (kdPembeli) REFERENCES Pembeli(kdPembeli);
