@@ -110,3 +110,5 @@ CREATE TABLE Pembeli (
 );
 
 -- MENAMBAHKAN FOREIGN KEY
+ALTER TABLE Produk
+ADD FOREIGN KEY (kdProdukDeskripsi) REFERENCES ProdukDeskripsi(kdProdui)
